@@ -1,4 +1,3 @@
-/* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -1372,7 +1371,6 @@ body {
     }
 }
 
-/* Ensure no content overlapping */
 section {
     position: relative;
     z-index: 1;
@@ -1382,12 +1380,10 @@ section {
     z-index: 1000;
 }
 
-/* Smooth transitions for better UX */
 * {
     transition: all 0.3s ease;
 }
 
-/* Button focus states for accessibility */
 .btn:focus,
 input:focus,
 textarea:focus {
@@ -1395,7 +1391,6 @@ textarea:focus {
     outline-offset: 2px;
 }
 
-/* Ensure proper spacing between sections */
 .hero,
 .features,
 .about,
@@ -1403,7 +1398,6 @@ textarea:focus {
     margin-bottom: 0;
 }
 
-/* Additional utility classes for spacing */
 .mt-1 { margin-top: 1rem; }
 .mt-2 { margin-top: 2rem; }
 .mb-1 { margin-bottom: 1rem; }
