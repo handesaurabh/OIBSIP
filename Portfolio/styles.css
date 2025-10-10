@@ -1350,6 +1350,10 @@ body:not(.dark-theme) .heart-icon {
         grid-template-columns: 1fr;
     }
 
+    .certifications-grid {
+        grid-template-columns: 1fr;
+    }
+
     .contact-content {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -1573,4 +1577,108 @@ section {
         filter: drop-shadow(0 0 2px rgba(79, 172, 254, 1));
         stroke-width: 2.5;
     }
+}
+
+/* Certifications Section */
+.certifications {
+    background: #ffffff;
+}
+
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.certification-card {
+    background: rgba(255, 255, 255, 1.0);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(79, 172, 254, 0.2);
+    color: #000000;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Dark Theme Certifications */
+body.dark-theme .certifications {
+    background: #16213e;
+}
+
+body.dark-theme .certification-card {
+    background: rgba(30, 30, 46, 0.7);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    color: #e0e0e0;
+}
+
+.certification-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(79, 172, 254, 0.5);
+}
+
+.certification-header {
+    margin-bottom: 1.5rem;
+}
+
+.certification-icon {
+    font-size: 2.5rem;
+    color: #4facfe;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(79, 172, 254, 0.5);
+}
+
+.certification-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #000000;
+    font-family: 'Courier New', monospace;
+}
+
+/* Dark Theme Certification Title */
+body.dark-theme .certification-title {
+    color: #ffffff;
+}
+
+.certification-details {
+    margin-bottom: 1.5rem;
+}
+
+.certification-organization {
+    color: #a0a0c0;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.certification-date {
+    color: #a0a0c0;
+    font-size: 0.9rem;
+}
+
+.certification-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: 'Courier New', monospace;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: #0f0f1a;
+    box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+}
+
+.certification-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(79, 172, 254, 0.6);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }

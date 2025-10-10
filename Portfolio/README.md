@@ -66,6 +66,7 @@ Portfolio/
 - Hero section with typing effect
 - Skills section with hover animations
 - Project cards with overlay effects
+- Certifications section with interactive cards
 - Contact form with validation
 - Responsive footer
 
@@ -124,6 +125,13 @@ The contact form uses Web3Forms for backend-free form submission:
 - Edit project cards in the projects section of [index.html](index.html)
 - Update project titles, descriptions, and technologies
 - Add project links and GitHub repositories
+
+### Updating Certifications
+- Edit certification cards in the certifications section of [index.html](index.html)
+- Update certification titles (GenAI Powered Data Analytics, Prompt Engineering)
+- Update issuing organizations (TATA x Forage, Great Learning)
+- Update completion dates
+- Add links to actual certificate pages
 
 ### Changing Colors
 - Modify color variables in [styles.css](styles.css)

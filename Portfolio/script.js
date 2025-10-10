@@ -54,7 +54,7 @@ function initScrollAnimations() {
     }, observerOptions);
 
     // Add animation class to elements
-    const animateElements = document.querySelectorAll('.skill-category, .project-card, .about-content, .contact-content');
+    const animateElements = document.querySelectorAll('.skill-category, .project-card, .certification-card, .about-content, .contact-content');
     animateElements.forEach(el => {
         el.classList.add('animate-on-scroll');
         observer.observe(el);
