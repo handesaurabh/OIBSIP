@@ -1,5 +1,5 @@
 // DOM Content Loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Initialize all functionality
     initNavigation();
     initScrollAnimations();
@@ -16,21 +16,21 @@ function initNavigation() {
     const navLinks = document.querySelectorAll('.nav-link');
 
     // Toggle mobile menu
-    navToggle.addEventListener('click', function() {
+    navToggle.addEventListener('click', function () {
         navMenu.classList.toggle('active');
         navToggle.classList.toggle('active');
     });
 
     // Close mobile menu when clicking on a link
     navLinks.forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function () {
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
         });
     });
 
     // Close mobile menu when clicking outside
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
         if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
@@ -45,7 +45,7 @@ function initScrollAnimations() {
         rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver(function(entries) {
+    const observer = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animated');
@@ -61,7 +61,7 @@ function initScrollAnimations() {
     });
 
     // Navbar background on scroll
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         const navbar = document.getElementById('navbar');
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
@@ -77,9 +77,9 @@ function initContactForm() {
     const submitBtn = contactForm.querySelector('button[type="submit"]');
     const originalBtnText = submitBtn.innerHTML;
 
-    contactForm.addEventListener('submit', async function(e) {
+    contactForm.addEventListener('submit', async function (e) {
         e.preventDefault();
-        
+
         // Get form data
         const formData = new FormData(contactForm);
         const name = formData.get('name');
@@ -131,11 +131,11 @@ function initContactForm() {
     // Real-time validation
     const inputs = contactForm.querySelectorAll('input, textarea');
     inputs.forEach(input => {
-        input.addEventListener('blur', function() {
+        input.addEventListener('blur', function () {
             validateInput(this);
         });
 
-        input.addEventListener('input', function() {
+        input.addEventListener('input', function () {
             clearError(this);
         });
     });
@@ -209,7 +209,7 @@ function validateInput(input) {
 function showError(input, message) {
     const formGroup = input.parentElement;
     const existingError = formGroup.querySelector('.error-message');
-    
+
     if (existingError) {
         existingError.remove();
     }
@@ -220,7 +220,7 @@ function showError(input, message) {
     errorDiv.style.fontSize = '0.875rem';
     errorDiv.style.marginTop = '0.5rem';
     errorDiv.textContent = message;
-    
+
     formGroup.appendChild(errorDiv);
     input.style.borderColor = '#e53e3e';
 }
@@ -228,11 +228,11 @@ function showError(input, message) {
 function clearError(input) {
     const formGroup = input.parentElement;
     const errorMessage = formGroup.querySelector('.error-message');
-    
+
     if (errorMessage) {
         errorMessage.remove();
     }
-    
+
     input.style.borderColor = '#e2e8f0';
 }
 
@@ -244,9 +244,9 @@ function showNotification(message, type = 'success') {
 
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
-    
+
     let backgroundColor, icon;
-    switch(type) {
+    switch (type) {
         case 'success':
             backgroundColor = '#48bb78';
             icon = 'fas fa-check-circle';
@@ -259,7 +259,7 @@ function showNotification(message, type = 'success') {
             backgroundColor = '#4299e1';
             icon = 'fas fa-info-circle';
     }
-    
+
     notification.style.cssText = `
         position: fixed;
         top: 20px;
@@ -278,7 +278,7 @@ function showNotification(message, type = 'success') {
         align-items: center;
         gap: 0.5rem;
     `;
-    
+
     notification.innerHTML = `<i class="${icon}"></i> ${message}`;
     document.body.appendChild(notification);
 
@@ -305,9 +305,11 @@ function initTypingEffect() {
         'Frontend Developer',
         'Backend Developer',
         'React Specialist',
-        'Node.js Expert'
+        'Node.js Expert',
+        'Data Entry Specialist',
+        'AI Developer'
     ];
-    
+
     const subtitle = document.querySelector('.hero-subtitle');
     let currentTitle = 0;
     let currentChar = 0;
@@ -315,7 +317,7 @@ function initTypingEffect() {
 
     function type() {
         const current = titles[currentTitle];
-        
+
         if (isDeleting) {
             subtitle.textContent = current.substring(0, currentChar - 1);
             currentChar--;
@@ -345,17 +347,17 @@ function initTypingEffect() {
 // Smooth Scrolling
 function initSmoothScrolling() {
     const links = document.querySelectorAll('a[href^="#"]');
-    
+
     links.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             const targetId = this.getAttribute('href').substring(1);
             const targetElement = document.getElementById(targetId);
-            
+
             if (targetElement) {
                 const offsetTop = targetElement.offsetTop - 70; // Account for fixed navbar
-                
+
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
@@ -396,7 +398,7 @@ function initActiveNavigation() {
 // Skill Progress Animation
 function animateSkillProgress() {
     const skillItems = document.querySelectorAll('.skill-item');
-    
+
     skillItems.forEach((item, index) => {
         setTimeout(() => {
             item.style.transform = 'translateX(0)';
@@ -408,13 +410,13 @@ function animateSkillProgress() {
 // Project Card Hover Effects
 function initProjectHoverEffects() {
     const projectCards = document.querySelectorAll('.project-card');
-    
+
     projectCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
+        card.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-10px) scale(1.02)';
         });
-        
-        card.addEventListener('mouseleave', function() {
+
+        card.addEventListener('mouseleave', function () {
             this.style.transform = 'translateY(0) scale(1)';
         });
     });
@@ -426,11 +428,11 @@ document.addEventListener('DOMContentLoaded', initProjectHoverEffects);
 // Parallax effect for hero section
 function initParallaxEffect() {
     const hero = document.querySelector('.hero');
-    
+
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
         const rate = scrolled * -0.5;
-        
+
         if (hero) {
             hero.style.transform = `translateY(${rate}px)`;
         }
@@ -443,21 +445,21 @@ document.addEventListener('DOMContentLoaded', initParallaxEffect);
 // Counter animation for stats
 function animateCounters() {
     const counters = document.querySelectorAll('.stat-number');
-    
+
     counters.forEach(counter => {
         const target = parseInt(counter.textContent);
         const increment = target / 100;
         let current = 0;
-        
+
         const timer = setInterval(() => {
             current += increment;
             if (current >= target) {
-                counter.textContent = target + (counter.textContent.includes('+') ? '+' : '') + 
-                                    (counter.textContent.includes('%') ? '%' : '');
+                counter.textContent = target + (counter.textContent.includes('+') ? '+' : '') +
+                    (counter.textContent.includes('%') ? '%' : '');
                 clearInterval(timer);
             } else {
-                counter.textContent = Math.ceil(current) + (counter.textContent.includes('+') ? '+' : '') + 
-                                    (counter.textContent.includes('%') ? '%' : '');
+                counter.textContent = Math.ceil(current) + (counter.textContent.includes('+') ? '+' : '') +
+                    (counter.textContent.includes('%') ? '%' : '');
             }
         }, 20);
     });
@@ -474,7 +476,7 @@ if (aboutSection) {
             }
         });
     });
-    
+
     aboutObserver.observe(aboutSection);
 }
 
@@ -498,13 +500,13 @@ function initThemeToggle() {
         box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         transition: all 0.3s ease;
     `;
-    
+
     document.body.appendChild(themeToggle);
-    
-    themeToggle.addEventListener('click', function() {
+
+    themeToggle.addEventListener('click', function () {
         document.body.classList.toggle('dark-theme');
         const icon = this.querySelector('i');
-        
+
         if (document.body.classList.contains('dark-theme')) {
             icon.className = 'fas fa-sun';
             localStorage.setItem('theme', 'dark');
@@ -513,7 +515,7 @@ function initThemeToggle() {
             localStorage.setItem('theme', 'light');
         }
     });
-    
+
     // Load saved theme
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
@@ -532,7 +534,7 @@ document.addEventListener('DOMContentLoaded', initThemeToggle);
 // Lazy loading for project images (when you add real images)
 function initLazyLoading() {
     const images = document.querySelectorAll('img[data-src]');
-    
+
     const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -543,7 +545,7 @@ function initLazyLoading() {
             }
         });
     });
-    
+
     images.forEach(img => imageObserver.observe(img));
 }
 
