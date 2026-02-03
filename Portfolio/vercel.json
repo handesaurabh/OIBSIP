@@ -2,8 +2,13 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "yourdomain.com" }],
-      "destination": "https://www.yourdomain.com/$1",
+      "has": [
+        {
+          "type": "host",
+          "value": "saurabhcodes"
+        }
+      ],
+      "destination": "https://www.saurabhcodes/$1",
       "permanent": true
     }
   ]
