@@ -425,23 +425,6 @@ function initProjectHoverEffects() {
 // Initialize project hover effects when DOM is ready
 document.addEventListener('DOMContentLoaded', initProjectHoverEffects);
 
-// Parallax effect for hero section
-function initParallaxEffect() {
-    const hero = document.querySelector('.hero');
-
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.5;
-
-        if (hero) {
-            hero.style.transform = `translateY(${rate}px)`;
-        }
-    });
-}
-
-// Initialize parallax effect
-document.addEventListener('DOMContentLoaded', initParallaxEffect);
-
 // Counter animation for stats
 function animateCounters() {
     const counters = document.querySelectorAll('.stat-number');
