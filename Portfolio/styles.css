@@ -408,7 +408,7 @@ body.dark-theme .nav-link:hover {
     color: #000000;
     position: relative;
     overflow: hidden;
-    padding: 75px 0 0 0; /* Add padding for navbar height */
+    padding: 75px 0 0 0; /* Reserve space for the fixed navbar */
 }
 
 /* Dark Theme Hero */
@@ -444,7 +444,8 @@ body.dark-theme .hero {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
-    padding: 2rem 0;
+    min-height: calc(100vh - 75px);
+    padding: 0;
 }
 
 .hero-title {
