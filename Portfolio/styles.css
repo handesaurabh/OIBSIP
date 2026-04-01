@@ -741,10 +741,7 @@ body.dark-theme .skill-category:hover {
 }
 
 .category-topline {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: start;
-    gap: 1rem;
+    display: block;
     min-height: 4.2rem;
 }
 
@@ -835,6 +832,8 @@ body.dark-theme .category-title {
     white-space: nowrap;
     position: relative;
     z-index: 1;
+    align-self: flex-end;
+    margin-top: 1rem;
 }
 
 .skills-toggle:hover {
@@ -1607,7 +1606,6 @@ body:not(.dark-theme) .heart-icon {
     }
 
     .category-topline {
-        grid-template-columns: 1fr;
         min-height: auto;
     }
 
@@ -1619,6 +1617,7 @@ body:not(.dark-theme) .heart-icon {
 
     .skills-toggle {
         width: 100%;
+        align-self: stretch;
     }
 
     .skills-list {
