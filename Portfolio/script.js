@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initTypingEffect();
     initSmoothScrolling();
     initActiveNavigation();
+    initSkillsCompactView();
 });
 
 // Navigation Toggle
@@ -393,6 +394,95 @@ function initActiveNavigation() {
 
     window.addEventListener('scroll', updateActiveNav);
     updateActiveNav(); // Initial call
+}
+
+// Compact Skills View
+function initSkillsCompactView() {
+    const skillCategories = document.querySelectorAll('.skill-category');
+
+    if (!skillCategories.length) {
+        return;
+    }
+
+    const updateCategoryState = category => {
+        const list = category.querySelector('.skills-list');
+        const skillItems = list ? list.querySelectorAll('.skill-item') : [];
+        const toggle = category.querySelector('.skills-toggle');
+        const toggleText = category.querySelector('.skills-toggle-text');
+        const previewCount = parseInt(category.dataset.previewCount, 10) || 6;
+
+        if (!list || !toggle || !toggleText || !skillItems.length) {
+            return;
+        }
+
+        if (skillItems.length <= previewCount) {
+            toggle.hidden = true;
+            category.classList.remove('is-collapsible', 'is-collapsed', 'is-expanded');
+            list.style.maxHeight = 'none';
+            return;
+        }
+
+        toggle.hidden = false;
+        category.classList.add('is-collapsible');
+
+        const columns = getGridColumnCount(list);
+        const rowsVisible = Math.ceil(previewCount / columns);
+        const rowGap = parseFloat(window.getComputedStyle(list).rowGap) || 0;
+        const itemHeight = skillItems[0].getBoundingClientRect().height;
+        const collapsedHeight = (rowsVisible * itemHeight) + ((rowsVisible - 1) * rowGap);
+
+        if (category.classList.contains('is-expanded')) {
+            toggle.setAttribute('aria-expanded', 'true');
+            toggleText.textContent = 'Show less';
+            list.style.maxHeight = `${list.scrollHeight}px`;
+            category.classList.remove('is-collapsed');
+        } else {
+            toggle.setAttribute('aria-expanded', 'false');
+            toggleText.textContent = 'Show all';
+            category.classList.add('is-collapsed');
+            list.style.maxHeight = `${collapsedHeight}px`;
+        }
+    };
+
+    skillCategories.forEach((category, index) => {
+        const list = category.querySelector('.skills-list');
+        const toggle = category.querySelector('.skills-toggle');
+
+        if (!list || !toggle) {
+            return;
+        }
+
+        if (!list.id) {
+            list.id = `skills-list-${index + 1}`;
+        }
+
+        toggle.setAttribute('aria-controls', list.id);
+
+        toggle.addEventListener('click', function () {
+            category.classList.toggle('is-expanded');
+            updateCategoryState(category);
+        });
+
+        updateCategoryState(category);
+    });
+
+    let resizeFrame;
+    window.addEventListener('resize', function () {
+        cancelAnimationFrame(resizeFrame);
+        resizeFrame = requestAnimationFrame(() => {
+            skillCategories.forEach(updateCategoryState);
+        });
+    });
+}
+
+function getGridColumnCount(element) {
+    const gridColumns = window.getComputedStyle(element).gridTemplateColumns;
+
+    if (!gridColumns) {
+        return 1;
+    }
+
+    return Math.max(1, gridColumns.split(' ').filter(column => column.trim() !== '').length);
 }
 
 // Skill Progress Animation
