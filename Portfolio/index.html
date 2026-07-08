@@ -63,6 +63,7 @@
                         <span class="nav-text">Projects</span>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="#certifications" class="nav-link">
                         <i class="fas fa-certificate nav-icon"></i>
@@ -75,6 +76,11 @@
                         <span class="nav-text">Contact</span>
                     </a>
                 </li>
+                <li class="nav-item nav-theme-item">
+                    <button class="nav-link nav-theme-btn" id="nav-theme-btn" aria-label="Toggle theme">
+                        <i class="fas fa-moon nav-icon"></i>
+                    </button>
+                </li>
             </ul>
             <div class="nav-toggle" id="nav-toggle">
                 <span class="bar"></span>
@@ -84,8 +90,13 @@
         </div>
     </nav>
 
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <canvas id="particle-canvas"></canvas>
+        <canvas id="binary-rain" class="binary-rain-canvas"></canvas>
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-text">
@@ -103,45 +114,72 @@
                     </div>
                 </div>
                 <div class="hero-image">
-                    <div class="image-placeholder">
-                        <img src="./images/user-image.png" alt="Saurabh Hande" class="hero-profile-img">
+                    <div class="image-wrapper">
+                        <canvas id="orbit-canvas"></canvas>
+                        <div class="image-placeholder">
+                            <img src="./images/user-image.png" alt="Saurabh Hande" class="hero-profile-img" loading="lazy">
+                            <div class="scan-line"></div>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span class="scroll-text">SCROLL DOWN</span>
+            <div class="scroll-chevron">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
+        <div class="about-grid-bg"></div>
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
                 <div class="about-text">
+                    <div class="about-code-header">
+                        <span class="about-comment">// about-me.js — developer profile</span>
+                    </div>
                     <p class="about-description">
-                        I'm a passionate MERN stack developer with expertise in building modern, scalable web
-                        applications.
-                        With a strong foundation in both frontend and backend technologies, I create seamless user
-                        experiences
-                        backed by robust server-side architecture.
+                        Full-stack developer specializing in the <span class="about-highlight">MERN</span> stack — architecting scalable web applications from the ground up. I bridge the gap between polished frontend experiences and robust backend architecture, delivering products that perform, scale, and delight users.
                     </p>
                     <p class="about-description">
-                        My journey in web development has equipped me with the skills to transform ideas into fully
-                        functional digital solutions. I'm constantly learning and adapting to new technologies to
-                        deliver cutting-edge applications.
+                        With hands-on experience across the entire development lifecycle — from schema design and RESTful APIs to state management and deployment — I turn complex requirements into clean, maintainable code. Every project is an opportunity to push boundaries with modern tooling and best practices.
                     </p>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <span class="stat-number">5+</span>
-                            <span class="stat-label">Projects Completed</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">100%</span>
-                            <span class="stat-label">Client Satisfaction</span>
+                    <div class="about-sysinfo">
+                        <div class="sysinfo-row sysinfo-status-row">
+                            <span class="status-glow"></span>
+                            <span class="sysinfo-key">STATUS</span>
+                            <span class="sysinfo-sep">:</span>
+                            <span class="sysinfo-active">● ACTIVE · OPEN TO WORK</span>
                         </div>
                     </div>
-                    <a href="./resume/Saurabh_Hande_Resume.pdf" class="btn btn-primary" target="_blank">
-                        <i class="fas fa-download"></i> Download Resume
-                    </a>
+
+                    <div class="about-actions">
+                        <a href="./resume/Saurabh_Hande_Resume.pdf" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
+                        <button class="btn btn-secondary" id="preview-resume-btn">
+                            <i class="fas fa-eye"></i> Preview Resume
+                        </button>
+                    </div>
+                </div>
+                <div class="about-terminal">
+                    <div class="terminal-bar">
+                        <div class="terminal-dots">
+                            <span class="tdot tdot-red"></span>
+                            <span class="tdot tdot-yellow"></span>
+                            <span class="tdot tdot-green"></span>
+                        </div>
+                        <span class="terminal-filename">about-me.js</span>
+                    </div>
+                    <div class="terminal-body" id="terminal-body">
+                        <div class="term-line"><span class="term-prompt">$</span> <span class="term-cmd">cat about-me.js</span></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -394,13 +432,31 @@
         </div>
     </section>
 
+    <!-- Tech Stack Graph Section -->
+    <section id="techstack" class="techstack">
+        <div class="container">
+            <h2 class="section-title">Tech Stack</h2>
+            <div class="techstack-wrapper">
+                <canvas id="tech-graph"></canvas>
+                <div class="techstack-legend">
+                    <span class="legend-item"><span class="legend-dot core"></span> Core</span>
+                    <span class="legend-item"><span class="legend-dot frontend"></span> Frontend</span>
+                    <span class="legend-item"><span class="legend-dot backend"></span> Backend</span>
+                    <span class="legend-item"><span class="legend-dot tools"></span> Tools</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card tilt-card" data-status="live" data-stars="12" data-tech="mern">
+                    <div class="project-card-border"></div>
                     <div class="project-image">
+                        <canvas class="project-canvas" data-icon="fa-user-doctor"></canvas>
                         <div class="project-placeholder">
                             <i class="fas fa-user-doctor"></i>
                         </div>
@@ -415,6 +471,7 @@
                                 </a>
                             </div>
                         </div>
+
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Doctor Appointment Booking</h3>
@@ -423,17 +480,19 @@
                             patient management, and notification system.
                         </p>
                         <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">Express</span>
-                            <span class="tech-tag">Razorpay Payment</span>
+                            <span class="tech-tag" data-color="#61dafb">React</span>
+                            <span class="tech-tag" data-color="#339933">Node.js</span>
+                            <span class="tech-tag" data-color="#47A248">MongoDB</span>
+                            <span class="tech-tag" data-color="#000000">Express</span>
+                            <span class="tech-tag" data-color="#2d8cf0">Razorpay</span>
                         </div>
                     </div>
                 </div>
 
-                 <div class="project-card">
+                 <div class="project-card tilt-card" data-status="live" data-stars="18" data-tech="mern">
+                    <div class="project-card-border"></div>
                     <div class="project-image">
+                        <canvas class="project-canvas" data-icon="fa-shirt"></canvas>
                         <div class="project-placeholder">
                             <i class="fas fa-shirt"></i>
                         </div>
@@ -447,24 +506,28 @@
                                 </a>
                             </div>
                         </div>
+
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">E-Commerce Platform</h3>
+                        <h3 class="project-title">ShopVerse — Fashion E-Commerce</h3>
                         <p class="project-description">
                             Fashion-focused MERN e-commerce app where users can explore clothing collections, choose sizes, manage their cart, and place secure orders with smooth checkout flows.
                         </p>
                         <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">Express</span>
-                            <span class="tech-tag">Razorpay Payment</span>
+                            <span class="tech-tag" data-color="#61dafb">React</span>
+                            <span class="tech-tag" data-color="#339933">Node.js</span>
+                            <span class="tech-tag" data-color="#47A248">MongoDB</span>
+                            <span class="tech-tag" data-color="#000000">Express</span>
+                            <span class="tech-tag" data-color="#2d8cf0">Razorpay</span>
                         </div>
+
                     </div>
                 </div>
                 
-                <div class="project-card">
+                <div class="project-card tilt-card" data-status="live" data-stars="9" data-tech="mern">
+                    <div class="project-card-border"></div>
                     <div class="project-image">
+                        <canvas class="project-canvas" data-icon="fa-store"></canvas>
                         <div class="project-placeholder">
                             <i class="fas fa-store"></i>
                         </div>
@@ -478,24 +541,28 @@
                                 </a>
                             </div>
                         </div>
+
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">E-Commerce Platform</h3>
+                        <h3 class="project-title">ShopEasy — Multi-Category Marketplace</h3>
                         <p class="project-description">
                             Multi-category MERN shopping platform built for mixed products, letting users browse different item types, compare options, manage carts, and complete orders with multiple payment methods.
                         </p>
                         <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">Express</span>
-                            <span class="tech-tag">Razorpay Payment</span>
+                            <span class="tech-tag" data-color="#61dafb">React</span>
+                            <span class="tech-tag" data-color="#339933">Node.js</span>
+                            <span class="tech-tag" data-color="#47A248">MongoDB</span>
+                            <span class="tech-tag" data-color="#000000">Express</span>
+                            <span class="tech-tag" data-color="#2d8cf0">Razorpay</span>
                         </div>
+
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card tilt-card" data-status="live" data-stars="21" data-tech="mern">
+                    <div class="project-card-border"></div>
                     <div class="project-image">
+                        <canvas class="project-canvas" data-icon="fa-utensils"></canvas>
                         <div class="project-placeholder">
                             <i class="fas fa-utensils"></i>
                         </div>
@@ -510,6 +577,7 @@
                                 </a>
                             </div>
                         </div>
+
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Food Delivery</h3>
@@ -518,17 +586,20 @@
                             payment integration, and delivery optimization.
                         </p>
                         <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">Express</span>
-                            <span class="tech-tag">Razorpay Payment</span>
+                            <span class="tech-tag" data-color="#61dafb">React</span>
+                            <span class="tech-tag" data-color="#339933">Node.js</span>
+                            <span class="tech-tag" data-color="#47A248">MongoDB</span>
+                            <span class="tech-tag" data-color="#000000">Express</span>
+                            <span class="tech-tag" data-color="#2d8cf0">Razorpay</span>
                         </div>
+
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card tilt-card" data-status="maintained" data-stars="7" data-tech="vanilla">
+                    <div class="project-card-border"></div>
                     <div class="project-image">
+                        <canvas class="project-canvas" data-icon="fa-tasks"></canvas>
                         <div class="project-placeholder">
                             <i class="fas fa-tasks"></i>
                         </div>
@@ -542,6 +613,7 @@
                                 </a>
                             </div>
                         </div>
+
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">To-Do App</h3>
@@ -550,15 +622,18 @@
                             reminders, and collaboration features for personal and team productivity.
                         </p>
                         <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag" data-color="#f7df1e">JavaScript</span>
+                            <span class="tech-tag" data-color="#e34f26">HTML5</span>
+                            <span class="tech-tag" data-color="#1572b6">CSS3</span>
                         </div>
+
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card tilt-card" data-status="maintained" data-stars="5" data-tech="vanilla">
+                    <div class="project-card-border"></div>
                     <div class="project-image">
+                        <canvas class="project-canvas" data-icon="fa-gamepad"></canvas>
                         <div class="project-placeholder">
                             <i class="fas fa-gamepad"></i>
                         </div>
@@ -574,6 +649,7 @@
                                 </a>
                             </div>
                         </div>
+
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Tic-Tac-Toe</h3>
@@ -582,69 +658,77 @@
                             and responsive design for all devices.
                         </p>
                         <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag" data-color="#f7df1e">JavaScript</span>
+                            <span class="tech-tag" data-color="#e34f26">HTML5</span>
+                            <span class="tech-tag" data-color="#1572b6">CSS3</span>
                         </div>
+
                     </div>
                 </div>
 
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-window-maximize"></i>
+            </div>
+            <div class="mini-projects">
+                <h3 class="sub-section-title"><span class="sub-title-prompt">$</span> ./mini-projects.sh</h3>
+                <div class="mini-projects-grid">
+                    <div class="project-card tilt-card mini" data-status="archived" data-stars="3" data-tech="vanilla">
+                        <div class="project-card-border"></div>
+                        <div class="project-image">
+                            <canvas class="project-canvas" data-icon="fa-window-maximize"></canvas>
+                            <div class="project-placeholder">
+                                <i class="fas fa-window-maximize"></i>
+                            </div>
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="https://oibsip-smoky.vercel.app/" class="project-link" target="_blank">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="https://github.com/handesaurabh/OIBSIP/tree/main/LandingPage" class="project-link" target="_blank">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://oibsip-smoky.vercel.app/" class="project-link" target="_blank">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                                <a href="https://github.com/handesaurabh/OIBSIP/tree/main/LandingPage" class="project-link" target="_blank">
-                                    <i class="fab fa-github"></i>
-                                </a>
+                        <div class="project-content">
+                            <h3 class="project-title">Landing Page</h3>
+                            <p class="project-description">
+                                Modern, responsive landing page built with HTML, CSS, and JavaScript — a polished design suitable for startups and small businesses.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag" data-color="#e34f26">HTML5</span>
+                                <span class="tech-tag" data-color="#1572b6">CSS3</span>
+                                <span class="tech-tag" data-color="#f7df1e">JavaScript</span>
                             </div>
                         </div>
                     </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Landing Page</h3>
-                        <p class="project-description">
-                            The primary objective of this project is to build a modern, responsive, and professional landing page that serves as an excellent starting point for web development beginners. 
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Responsive Design</span>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">
-                            <i class="fas fa-thermometer-half"></i>
-                        </div>
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://temp-converter-navy.vercel.app/" class="project-link" target="_blank">
-                                    <i class="fas fa-external-link-alt"></i>
-                                </a>
-                                <a href="https://github.com/handesaurabh/OIBSIP/tree/main/TempConverter" class="project-link" target="_blank">
-                                    <i class="fab fa-github"></i>
-                                </a>
+                    <div class="project-card tilt-card mini" data-status="archived" data-stars="4" data-tech="vanilla">
+                        <div class="project-card-border"></div>
+                        <div class="project-image">
+                            <canvas class="project-canvas" data-icon="fa-thermometer-half"></canvas>
+                            <div class="project-placeholder">
+                                <i class="fas fa-thermometer-half"></i>
+                            </div>
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="https://temp-converter-navy.vercel.app/" class="project-link" target="_blank">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="https://github.com/handesaurabh/OIBSIP/tree/main/TempConverter" class="project-link" target="_blank">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Temperature Converter</h3>
-                        <p class="project-description">
-                            A responsive web application that converts temperatures between Celsius (°C), Fahrenheit (°F), and Kelvin (K) with real-time conversion and input validation. 
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Validation</span>
+                        <div class="project-content">
+                            <h3 class="project-title">Temperature Converter</h3>
+                            <p class="project-description">
+                                A responsive web application that converts between Celsius, Fahrenheit, and Kelvin with real-time conversion and input validation.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag" data-color="#e34f26">HTML5</span>
+                                <span class="tech-tag" data-color="#1572b6">CSS3</span>
+                                <span class="tech-tag" data-color="#f7df1e">JavaScript</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -657,7 +741,7 @@
         <div class="container">
             <h2 class="section-title">Certifications</h2>
             <div class="certifications-grid">
-                <div class="certification-card">
+                <div class="certification-card tilt-card">
                     <div class="certification-header">
                         <i class="fas fa-laptop-code certification-icon"></i>
                         <h3 class="certification-title">Full Stack Development</h3>
@@ -671,7 +755,7 @@
                     </a>
                 </div>
 
-                <div class="certification-card">
+                <div class="certification-card tilt-card">
                     <div class="certification-header">
                         <i class="fas fa-chart-line certification-icon"></i>
                         <h3 class="certification-title">GenAI Powered Data Analytics</h3>
@@ -685,7 +769,7 @@
                     </a>
                 </div>
 
-                <div class="certification-card">
+                <div class="certification-card tilt-card">
                     <div class="certification-header">
                         <i class="fas fa-lightbulb certification-icon"></i>
                         <h3 class="certification-title">Prompt Engineering</h3>
@@ -702,66 +786,107 @@
         </div>
     </section>
 
+
+
     <!-- Contact Section -->
     <section id="contact" class="contact">
+        <div class="contact-grid-bg"></div>
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <h3>Let's Work Together</h3>
-                    <p>
-                        I'm always interested in new opportunities and exciting projects.
-                        Whether you have a question or just want to say hi, I'll try my best to get back to you!
-                    </p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>handesaurabh2004@gmail.com</span>
+                    <div class="contact-info-card">
+                        <div class="terminal-prompt">
+                            <span class="prompt-dollar">$</span>
+                            <span class="prompt-command">./reach-me.sh</span>
+                            <span class="prompt-cursor">_</span>
                         </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>+91-9022851318</span>
+                        <p class="contact-desc">
+                            I'm always interested in new opportunities and exciting projects.
+                            Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                        </p>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <span class="item-tag">email</span>
+                                <span class="item-value">handesaurabh2004@gmail.com</span>
+                                <span class="item-copy" data-copy="handesaurabh2004@gmail.com" title="Copy">⧉</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="item-tag">phone</span>
+                                <span class="item-value">+91-9022851318</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="item-tag">location</span>
+                                <span class="item-value">Dombivali, Maharashtra, India</span>
+                            </div>
                         </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Dombivali, Maharashtra, India</span>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/saurabh-hande-b825a0364/" class="social-link"
+                                target="_blank" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/handesaurabh" class="social-link" target="_blank" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
                         </div>
-                    </div>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/saurabh-hande-b825a0364/" class="social-link"
-                            target="_blank">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://github.com/handesaurabh" class="social-link" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
                     </div>
                 </div>
                 <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                    <div class="form-progress">
+                        <div class="form-progress-bar" id="form-progress-bar"></div>
+                    </div>
+                    <div class="form-header">
+                        <span class="form-header-line">// -- send_message --</span>
+                        <span class="form-progress-text" id="form-progress-text">0%</span>
+                    </div>
 
                     <input type="hidden" name="access_key" value="9a3b257b-bdbf-4c6f-bd0b-df97619d3325">
-
                     <input type="hidden" name="redirect" value="">
-
                     <input type="hidden" name="subject" value="New Portfolio Contact Form Submission">
-
                     <input type="checkbox" name="botcheck" id="" style="display: none;">
 
                     <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        <div class="form-field">
+                            <input type="text" id="name" name="name" required spellcheck="false" placeholder=" ">
+                            <label for="name" class="form-label">Your Name</label>
+                            <span class="form-border"></span>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        <div class="form-field">
+                            <input type="email" id="email" name="email" required spellcheck="false" placeholder=" ">
+                            <label for="email" class="form-label">Your Email</label>
+                            <span class="form-border"></span>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="subject_field" name="subject_field" placeholder="Subject" required>
+                        <div class="form-field">
+                            <input type="text" id="subject_field" name="subject_field" required spellcheck="false" placeholder=" ">
+                            <label for="subject_field" class="form-label">Subject</label>
+                            <span class="form-border"></span>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Your Message" rows="6" required></textarea>
+                        <div class="form-field">
+                            <textarea id="message" name="message" required spellcheck="false" placeholder=" " maxlength="500"></textarea>
+                            <label for="message" class="form-label">Your Message</label>
+                            <span class="form-border"></span>
+                        </div>
+                        <div class="form-char-count">
+                            <span class="char-count-current" id="char-count-current">0</span>
+                            <span class="char-count-sep">/</span>
+                            <span class="char-count-max">500</span>
+                            <span class="char-count-label">chars</span>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i> Send Message
+                    <button type="submit" class="contact-submit">
+                        <span class="btn-text">Send Message</span>
+                        <span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
                     </button>
+                    <div class="form-footer">
+                        <span class="form-footer-icon" id="form-footer-icon">◆</span>
+                        <span class="form-footer-text" id="form-footer-text">awaiting input...</span>
+                    </div>
                 </form>
             </div>
         </div>
@@ -769,16 +894,68 @@
 
     <!-- Footer -->
     <footer class="footer">
+        <div class="footer-grid-bg"></div>
         <div class="container">
-            <div class="footer-content">
-                <p>&copy;2026@SaurabhHande<svg xmlns="http://www.w3.org/2000/svg" class="heart-icon" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>. All rights reserved.</p>
+            <div class="footer-top-row">
+                <div class="footer-copyright">
+                    <span class="footer-comment">//</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="code-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                    <span class="footer-copy-text">&copy; 2026 Saurabh Hande</span>
+                </div>
+                <div class="footer-clock" id="footer-clock">
+                    <span class="clock-bracket">[</span>
+                    <span class="clock-time">--:--:--</span>
+                    <span class="clock-bracket">]</span>
+                </div>
+                <div class="footer-status">
+                    <span class="status-pulse"></span>
+                    <span class="status-text">SYSTEM&nbsp;ONLINE</span>
+                    <span class="status-cursor">_</span>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom-row">
+                <div class="footer-stack">
+                    <span class="stack-prompt">$</span>
+                    <span class="stack-label">stack</span>
+                    <span class="stack-items">React · Node.js · MongoDB · Express</span>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/saurabh-hande-b825a0364/" class="footer-social-link" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/handesaurabh" class="footer-social-link" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:handesaurabh2004@gmail.com" class="footer-social-link" target="_blank" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- Resume Preview Modal -->
+    <div class="resume-modal-overlay" id="resume-modal-overlay">
+        <div class="resume-modal">
+            <div class="resume-modal-header">
+                <h3>Resume Preview</h3>
+                <div class="resume-modal-actions">
+                    <a href="./resume/Saurabh_Hande_Resume.pdf" class="btn btn-primary" target="_blank" download>
+                        <i class="fas fa-download"></i> Download
+                    </a>
+                    <button class="resume-modal-close" id="resume-modal-close" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="resume-modal-body">
+                <iframe src="./resume/Saurabh_Hande_Resume.pdf" class="resume-iframe" title="Resume Preview"></iframe>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
