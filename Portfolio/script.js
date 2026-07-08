@@ -14,6 +14,26 @@ document.addEventListener('DOMContentLoaded', function () {
 const isMobile = window.innerWidth < 768 || 'ontouchstart' in window;
 const FRAME_INTERVAL = 1000 / (isMobile ? 15 : 30);
 
+// Throttle utility for scroll handlers
+function rafThrottle(fn) {
+    let ticking = false;
+    return function () {
+        if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(() => {
+                fn();
+                ticking = false;
+            });
+        }
+    };
+}
+
+// Page visibility state - pauses animations when tab is hidden
+let isPageVisible = true;
+document.addEventListener('visibilitychange', () => {
+    isPageVisible = !document.hidden;
+});
+
 // Navigation Toggle
 function initNavigation() {
     const navToggle = document.getElementById('nav-toggle');
@@ -66,14 +86,11 @@ function initScrollAnimations() {
     });
 
     // Navbar background on scroll
-    window.addEventListener('scroll', function () {
+    const updateNavbar = rafThrottle(() => {
         const navbar = document.getElementById('navbar');
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
+    window.addEventListener('scroll', updateNavbar, { passive: true });
 }
 
 // Contact Form Handling with Web3Forms
@@ -455,7 +472,7 @@ function initActiveNavigation() {
         });
     }
 
-    window.addEventListener('scroll', updateActiveNav);
+    window.addEventListener('scroll', rafThrottle(updateActiveNav));
     updateActiveNav(); // Initial call
 }
 
@@ -617,6 +634,10 @@ function initParticleNetwork() {
 
     function draw(timestamp) {
         timestamp = timestamp || performance.now();
+        if (!isPageVisible) {
+            animationId = requestAnimationFrame(draw);
+            return;
+        }
         if (timestamp - lastFrameTime < FRAME_INTERVAL) {
             animationId = requestAnimationFrame(draw);
             return;
@@ -626,8 +647,8 @@ function initParticleNetwork() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         const isDark = document.body.classList.contains('dark-theme');
-        const particleColor = isDark ? '79, 172, 254' : '79, 172, 254';
-        const lineColor = isDark ? '79, 172, 254' : '79, 172, 254';
+        const particleColor = '79, 172, 254';
+        const lineColor = '79, 172, 254';
 
         particles.forEach((p, i) => {
             p.x += p.vx;
@@ -729,12 +750,13 @@ function initScrollProgress() {
     const progressBar = document.getElementById('scroll-progress');
     if (!progressBar) return;
 
-    window.addEventListener('scroll', () => {
+    const updateProgress = rafThrottle(() => {
         const scrollTop = window.scrollY;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / docHeight) * 100;
-        progressBar.style.width = scrollPercent + '%';
+        progressBar.style.width = (scrollTop / docHeight) * 100 + '%';
     });
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
 }
 
 // 3D Tilt Effect (disabled on mobile for performance)
@@ -1269,6 +1291,10 @@ function initTechGraph() {
 
     function animate(timestamp) {
         timestamp = timestamp || performance.now();
+        if (!isPageVisible) {
+            animationId = requestAnimationFrame(animate);
+            return;
+        }
         if (timestamp - techLastFrame < FRAME_INTERVAL) {
             animationId = requestAnimationFrame(animate);
             return;
@@ -1390,6 +1416,10 @@ function initProjectCodeRain() {
         function draw(timestamp) {
             if (!activeCanvas) return;
             timestamp = timestamp || performance.now();
+            if (!isPageVisible) {
+                activeAnimationId = requestAnimationFrame(draw);
+                return;
+            }
             if (timestamp - codeRainLastFrame < FRAME_INTERVAL) {
                 activeAnimationId = requestAnimationFrame(draw);
                 return;
@@ -1506,6 +1536,10 @@ function initOrbitAnimation() {
 
     function draw(timestamp) {
         timestamp = timestamp || performance.now();
+        if (!isPageVisible) {
+            animationId = requestAnimationFrame(draw);
+            return;
+        }
         if (timestamp - orbitLastFrame < FRAME_INTERVAL) {
             animationId = requestAnimationFrame(draw);
             return;
@@ -1621,6 +1655,10 @@ function initBinaryRain() {
 
     function draw(timestamp) {
         timestamp = timestamp || performance.now();
+        if (!isPageVisible) {
+            animationId = requestAnimationFrame(draw);
+            return;
+        }
         if (timestamp - binaryLastFrame < FRAME_INTERVAL) {
             animationId = requestAnimationFrame(draw);
             return;
@@ -1982,6 +2020,10 @@ function initCursorGlow() {
 
     function animateGlow(timestamp) {
         timestamp = timestamp || performance.now();
+        if (!isPageVisible) {
+            requestAnimationFrame(animateGlow);
+            return;
+        }
         if (timestamp - glowLastFrame < FRAME_INTERVAL) {
             requestAnimationFrame(animateGlow);
             return;
