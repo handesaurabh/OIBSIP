@@ -218,7 +218,7 @@ body.dark-theme .navbar.scrolled {
     }
 }
 
-/* Navbar code icon glow */
+/* Navbar code icon glow (handled by embedded SVG filter + SMIL animation) */
 .designation-icon {
     width: 16px;
     height: 16px;
@@ -226,13 +226,7 @@ body.dark-theme .navbar.scrolled {
     display: inline-block;
     vertical-align: middle;
     margin: 0 2px;
-    animation: multicolor 4s ease-in-out infinite;
-    filter: drop-shadow(0 0 6px currentColor);
-}
-
-/* Light theme specific styles for designation icon */
-body:not(.dark-theme) .designation-icon {
-    filter: drop-shadow(0 0 6px currentColor);
+    will-change: transform;
 }
 
 /* Responsive sizes for designation icon */
@@ -241,10 +235,6 @@ body:not(.dark-theme) .designation-icon {
         width: 16px;
         height: 16px;
     }
-}
-
-body.dark-theme .designation-icon {
-    filter: drop-shadow(0 0 6px currentColor);
 }
 
 .designation-text {
@@ -278,7 +268,6 @@ body.dark-theme .designation-icon {
     
     /* Improve SVG visibility on mobile */
     body:not(.dark-theme) .designation-icon {
-        filter: drop-shadow(0 0 4px currentColor);
         stroke-width: 2;
     }
 }
@@ -2378,14 +2367,9 @@ body.dark-theme .footer {
     width: 14px;
     height: 14px;
     stroke-width: 2.5;
-    animation: multicolor 4s ease-in-out infinite;
     display: inline-block;
     vertical-align: middle;
-    filter: drop-shadow(0 0 6px currentColor);
-}
-
-body.dark-theme .code-icon {
-    filter: drop-shadow(0 0 6px currentColor);
+    will-change: transform;
 }
 
 .footer-copy-text {

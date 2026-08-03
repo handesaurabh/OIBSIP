@@ -5,7 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saurabh Hande - MERN Stack Developer</title>
-    <meta name="description" content="Professional portfolio of a MERN Fullstack Developer">
+    <meta name="description" content="Portfolio of Saurabh Hande, a MERN Full Stack Developer specializing in React.js, Next.js, Node.js, Python and scalable web applications.">
+    <meta name="author" content="Saurabh Hande">
+    <meta name="keywords" content="Saurabh Hande, MERN Developer, Full Stack Developer, React Developer, Next.js, Node.js, Python, Web Developer">
+    <meta name="theme-color" content="#4facfe">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="apple-touch-icon" href="images/favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Saurabh Hande - MERN Stack Developer">
+    <meta property="og:description" content="MERN Full Stack Developer building polished, scalable web experiences with React, Next.js, Node.js and Python.">
+    <meta property="og:image" content="images/favicon.svg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Saurabh Hande - MERN Stack Developer">
+    <meta name="twitter:description" content="MERN Full Stack Developer building polished, scalable web experiences.">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,8 +42,26 @@
                         <div class="logo-designation">
                             <svg xmlns="http://www.w3.org/2000/svg" class="designation-icon" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M8 9l3 3-3 3m5 0h3m4 0a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v10a2 2 0 002 2h12z" />
+                                <defs>
+                                    <filter id="designation-glow" x="-80%" y="-80%" width="260%" height="260%">
+                                        <feGaussianBlur stdDeviation="1.2" result="blur"/>
+                                        <feMerge>
+                                            <feMergeNode in="blur"/>
+                                            <feMergeNode in="blur"/>
+                                            <feMergeNode in="SourceGraphic"/>
+                                        </feMerge>
+                                    </filter>
+                                </defs>
+                                <g style="transform-origin: 12px 12px;">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        filter="url(#designation-glow)"
+                                        d="M8 9l3 3-3 3m5 0h3m4 0a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v10a2 2 0 002 2h12z">
+                                        <animate attributeName="stroke" dur="3.5s" repeatCount="indefinite"
+                                            values="#ff4d6d;#ff9f1c;#ffd60a;#7cfc00;#00e5ff;#7d5fff;#ff6ec7;#ff4d6d"/>
+                                    </path>
+                                    <animateTransform attributeName="transform" type="scale" dur="3.5s" repeatCount="indefinite"
+                                        values="1;1.12;1;1.12;1;1.12;1;1"/>
+                                </g>
                             </svg>
                             <span class="designation-text">MERN Full Stack Developer</span>
                         </div>
@@ -211,6 +241,10 @@
                         </div>
                         <div class="skill-item">
                             <i class="fab fa-js-square"></i>
+                            <span>Next.js</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-js-square"></i>
                             <span>JavaScript</span>
                         </div>
                         <div class="skill-item">
@@ -292,6 +326,10 @@
                             <span>Node.js</span>
                         </div>
                         <div class="skill-item">
+                            <i class="fab fa-python"></i>
+                            <span>Python</span>
+                        </div>
+                        <div class="skill-item">
                             <i class="fas fa-server"></i>
                             <span>Express.js</span>
                         </div>
@@ -302,6 +340,10 @@
                         <div class="skill-item">
                             <i class="fas fa-key"></i>
                             <span>JWT Auth</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-user-lock"></i>
+                            <span>Clerk</span>
                         </div>
                         <div class="skill-item">
                             <i class="fas fa-cloud"></i>
@@ -900,7 +942,25 @@
                 <div class="footer-copyright">
                     <span class="footer-comment">//</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="code-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        <defs>
+                            <filter id="code-icon-glow" x="-80%" y="-80%" width="260%" height="260%">
+                                <feGaussianBlur stdDeviation="1.2" result="blur"/>
+                                <feMerge>
+                                    <feMergeNode in="blur"/>
+                                    <feMergeNode in="blur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <g style="transform-origin: 12px 12px;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" filter="url(#code-icon-glow)"
+                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4">
+                                <animate attributeName="stroke" dur="3.5s" repeatCount="indefinite"
+                                    values="#ff4d6d;#ff9f1c;#ffd60a;#7cfc00;#00e5ff;#7d5fff;#ff6ec7;#ff4d6d"/>
+                            </path>
+                            <animateTransform attributeName="transform" type="scale" dur="3.5s" repeatCount="indefinite"
+                                values="1;1.12;1;1.12;1;1.12;1;1"/>
+                        </g>
                     </svg>
                     <span class="footer-copy-text">&copy; 2026 Saurabh Hande</span>
                 </div>
