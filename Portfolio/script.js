@@ -387,7 +387,7 @@ function initTypingEffect() {
         'Backend Developer',
         'React Specialist',
         'Node.js Expert',
-        'Data Entry Specialist',
+        'GenAI Specialist',
         'AI Developer'
     ];
 
@@ -884,11 +884,12 @@ function initTechGraph() {
     }
 
     function getCategoryRadii(scale) {
+        const minScale = Math.max(scale, 0.7);
         return {
-            core: { color: '#4facfe', glow: 'rgba(79, 172, 254, 0.4)', radius: Math.round(28 * scale) },
-            frontend: { color: '#a855f7', glow: 'rgba(168, 85, 247, 0.3)', radius: Math.round(18 * scale) },
-            backend: { color: '#22d3ee', glow: 'rgba(34, 211, 238, 0.3)', radius: Math.round(18 * scale) },
-            tools: { color: '#f59e0b', glow: 'rgba(245, 158, 11, 0.3)', radius: Math.round(16 * scale) }
+            core: { color: '#4facfe', glow: 'rgba(79, 172, 254, 0.4)', radius: Math.round(28 * minScale) },
+            frontend: { color: '#a855f7', glow: 'rgba(168, 85, 247, 0.3)', radius: Math.round(18 * minScale) },
+            backend: { color: '#22d3ee', glow: 'rgba(34, 211, 238, 0.3)', radius: Math.round(18 * minScale) },
+            tools: { color: '#f59e0b', glow: 'rgba(245, 158, 11, 0.3)', radius: Math.round(16 * minScale) }
         };
     }
 
@@ -972,6 +973,24 @@ function initTechGraph() {
     function resize() {
         canvas.width = canvas.clientWidth;
         canvas.height = canvas.clientHeight;
+    }
+
+    function buildMobileGrid() {
+        const el = document.getElementById('techstack-mobile');
+        if (!el) return;
+        const cats = [
+            { key: 'core', label: 'Core', color: '#4facfe' },
+            { key: 'frontend', label: 'Frontend', color: '#a855f7' },
+            { key: 'backend', label: 'Backend', color: '#22d3ee' },
+            { key: 'tools', label: 'Tools', color: '#f59e0b' }
+        ];
+        el.innerHTML = cats.map(c => {
+            const items = nodeData.filter(n => n.cat === c.key);
+            const dots = items.map(n =>
+                `<span class="tm-skill"><span class="tm-dot" style="background:${c.color};box-shadow:0 0 6px ${c.color}66"></span>${n.label}</span>`
+            ).join('');
+            return `<div class="tm-card"><div class="tm-head"><span class="tm-indicator" style="background:${c.color}"></span>${c.label}</div><div class="tm-grid">${dots}</div></div>`;
+        }).join('');
     }
 
     function initNodes() {
@@ -1273,9 +1292,9 @@ function initTechGraph() {
             ctx.lineWidth = isHovered ? Math.max(1, 2 * scale) : Math.max(0.5, 1 * scale);
             ctx.stroke();
 
-            const maxLabelLen = scale < 0.6 ? 5 : scale < 0.8 ? 7 : 10;
-            const fontSize = Math.max(6, Math.round((isHovered ? 11 : 10) * scale));
-            ctx.font = `${fontSize}px 'Inter', sans-serif`;
+            const maxLabelLen = scale < 0.6 ? 12 : scale < 0.8 ? 10 : 12;
+            const fontSize = Math.max(10, Math.round((isHovered ? 11 : 10) * scale));
+            ctx.font = `600 ${fontSize}px 'Inter', sans-serif`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillStyle = '#ffffff';
@@ -1376,6 +1395,7 @@ function initTechGraph() {
 
     resize();
     initNodes();
+    buildMobileGrid();
     animate();
 }
 
@@ -2151,6 +2171,247 @@ function initFooterClock() {
     setInterval(tick, 1000);
 }
 
+// ============ BROWSER TAB TITLE ANIMATION ============
+function initTabTitleAnimation() {
+    const baseTitle = document.title;
+
+    const phrases = [
+        'Saurabh Hande',
+        'MERN Stack · GenAI Developer',
+        'React · Node · MongoDB · Express',
+        'Let\'s build something great 🚀'
+    ];
+
+    const awayTitles = [
+        '👋 Hey, come back!',
+        '📬 Open to work '
+    ];
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    let timer = null;
+    let running = false;
+
+    function tick() {
+        const current = phrases[phraseIndex];
+
+        if (deleting) {
+            charIndex--;
+            document.title = current.substring(0, charIndex) + '_';
+        } else {
+            charIndex++;
+            document.title = current.substring(0, charIndex) + '_';
+        }
+
+        let speed = deleting ? 45 : 90;
+
+        if (!deleting && charIndex === current.length) {
+            document.title = current + ' ✨';
+            speed = 1800;
+            deleting = true;
+        } else if (deleting && charIndex === 0) {
+            deleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            speed = 500;
+        }
+
+        timer = setTimeout(tick, speed);
+    }
+
+    function start() {
+        if (running) return;
+        running = true;
+        charIndex = 0;
+        deleting = false;
+        clearTimeout(timer);
+        tick();
+    }
+
+    function stop() {
+        running = false;
+        clearTimeout(timer);
+        document.title = baseTitle;
+    }
+
+    let awayIndex = 0;
+    let awayTimer = null;
+
+    function startAway() {
+        stop();
+        let shown = 0;
+        function cycleAway() {
+            document.title = awayTitles[awayIndex % awayTitles.length];
+            awayIndex++;
+            shown++;
+            if (shown >= 6) {
+                clearInterval(awayTimer);
+                awayTimer = null;
+                // Resume the typewriter so the tab keeps attention
+                if (!running) start();
+                return;
+            }
+        }
+        cycleAway();
+        awayTimer = setInterval(cycleAway, 1600);
+    }
+
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            startAway();
+        } else {
+            if (awayTimer) {
+                clearInterval(awayTimer);
+                awayTimer = null;
+            }
+            stop();
+            setTimeout(start, 300);
+        }
+    });
+
+    // Start after a short delay so the page can load first
+    setTimeout(start, 2500);
+}
+
+// ============ GLOSSY ANIMATED FAVICON ============
+function initFaviconAnimation() {
+    const link = document.querySelector('link[rel="icon"]') || (function () {
+        const l = document.createElement('link');
+        l.rel = 'icon';
+        document.head.appendChild(l);
+        return l;
+    })();
+
+    const canvas = document.createElement('canvas');
+    canvas.width = 64;
+    canvas.height = 64;
+    const ctx = canvas.getContext('2d');
+    const size = 64;
+    const cx = size / 2;
+    const cy = size / 2;
+
+    const colors = [
+        [79, 172, 254],
+        [0, 242, 254],
+        [168, 85, 247],
+        [236, 72, 153]
+    ];
+
+    function roundRectPath(x, y, w, h, r) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + w, y, x + w, y + h, r);
+        ctx.arcTo(x + w, y + h, x, y + h, r);
+        ctx.arcTo(x, y + h, x, y, r);
+        ctx.arcTo(x, y, x + w, y, r);
+        ctx.closePath();
+    }
+
+    function colorAt(phase) {
+        phase = ((phase % 1) + 1) % 1;
+        const seg = phase * (colors.length - 1);
+        const i = Math.min(Math.floor(seg), colors.length - 2);
+        const f = seg - i;
+        const c1 = colors[i];
+        const c2 = colors[i + 1];
+        return 'rgb(' +
+            Math.round(c1[0] + (c2[0] - c1[0]) * f) + ',' +
+            Math.round(c1[1] + (c2[1] - c1[1]) * f) + ',' +
+            Math.round(c1[2] + (c2[2] - c1[2]) * f) + ')';
+    }
+
+    let frame = 0;
+    let favTimer = null;
+    let reducedMotion = false;
+    try {
+        reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    } catch (e) { /* ignore */ }
+
+    function drawFrame() {
+        const t = frame * 0.1;
+        frame++;
+
+        ctx.clearRect(0, 0, size, size);
+
+        // Rotating gradient ring behind the badge
+        const ringR = 27;
+        ctx.lineWidth = 3.5;
+        ctx.lineCap = 'round';
+        for (let i = 0; i < 20; i++) {
+            const a0 = (i / 20) * Math.PI * 2 + t;
+            const a1 = ((i + 1) / 20) * Math.PI * 2 + t;
+            ctx.strokeStyle = colorAt(i / 20 + t / (Math.PI * 2));
+            ctx.beginPath();
+            ctx.arc(cx, cy, ringR, a0, a1);
+            ctx.stroke();
+        }
+
+        // Glossy glass badge
+        roundRectPath(5, 5, size - 10, size - 10, 14);
+        const bg = ctx.createLinearGradient(0, 5, 0, size - 5);
+        bg.addColorStop(0, '#4facfe');
+        bg.addColorStop(0.5, '#00d2ff');
+        bg.addColorStop(1, '#a855f7');
+        ctx.fillStyle = bg;
+        ctx.shadowColor = 'rgba(79,172,254,0.5)';
+        ctx.shadowBlur = 10;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+        ctx.stroke();
+
+        // White "SH" monogram with a cyan glow
+        ctx.font = '700 25px Inter, Arial, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.shadowColor = 'rgba(255,255,255,0.9)';
+        ctx.shadowBlur = 8;
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText('SH', cx, cy + 1);
+        ctx.shadowBlur = 0;
+
+        // Glass highlight on the top half
+        ctx.save();
+        roundRectPath(5, 5, size - 10, size - 10, 14);
+        ctx.clip();
+        const hl = ctx.createRadialGradient(cx - 12, cy - 18, 2, cx - 12, cy - 18, 42);
+        hl.addColorStop(0, 'rgba(255,255,255,0.5)');
+        hl.addColorStop(0.5, 'rgba(255,255,255,0.1)');
+        hl.addColorStop(1, 'rgba(255,255,255,0)');
+        ctx.fillStyle = hl;
+        ctx.fillRect(0, 0, size, size);
+
+        // Diagonal sweeping shine
+        const shineX = ((t * 90) % (size + 120)) - 60;
+        const sh = ctx.createLinearGradient(shineX - 22, 0, shineX + 22, size);
+        sh.addColorStop(0, 'rgba(255,255,255,0)');
+        sh.addColorStop(0.5, 'rgba(255,255,255,0.25)');
+        sh.addColorStop(1, 'rgba(255,255,255,0)');
+        ctx.fillStyle = sh;
+        ctx.fillRect(0, 0, size, size);
+        ctx.restore();
+
+        link.href = canvas.toDataURL('image/png');
+    }
+
+    drawFrame();
+    if (!reducedMotion) favTimer = setInterval(drawFrame, 100);
+
+    // Pause animation when the tab is hidden to save CPU
+    document.addEventListener('visibilitychange', function () {
+        if (reducedMotion) return;
+        if (document.hidden) {
+            clearInterval(favTimer);
+            favTimer = null;
+        } else if (!favTimer) {
+            favTimer = setInterval(drawFrame, 100);
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', initResumeModal);
 document.addEventListener('DOMContentLoaded', initFooterClock);
 document.addEventListener('DOMContentLoaded', initFormInteractions);
+document.addEventListener('DOMContentLoaded', initTabTitleAnimation);
+document.addEventListener('DOMContentLoaded', initFaviconAnimation);

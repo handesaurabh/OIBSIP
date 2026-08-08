@@ -1132,6 +1132,10 @@ body.dark-theme .techstack {
     background: linear-gradient(180deg, #1a1a2e, #0f0f1a, #1a1a2e);
 }
 
+.techstack-mobile {
+    display: none;
+}
+
 .techstack-wrapper {
     position: relative;
     max-width: 920px;
@@ -1270,68 +1274,120 @@ body.dark-theme .legend-item:hover {
 }
 
 @media (max-width: 768px) {
-    #tech-graph {
-        height: min(360px, 55vh);
-        border-radius: 14px;
-    }
     .techstack-wrapper {
-        padding: 1rem 0.75rem;
-        border-radius: 18px;
+        display: none;
+    }
+    .techstack-mobile {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+        max-width: 920px;
+        margin: 0 auto;
+    }
+    .tm-card {
+        background: rgba(255,255,255,0.55);
+        border: 1px solid rgba(79,172,254,0.1);
+        border-radius: 16px;
+        padding: 0.85rem 0.8rem;
+        backdrop-filter: blur(10px);
+    }
+    body.dark-theme .tm-card {
+        background: rgba(20,20,38,0.55);
+        border-color: rgba(79,172,254,0.12);
+    }
+    .tm-head {
+        font-family: 'Courier New', monospace;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: #64748b;
+        text-transform: uppercase;
+        margin-bottom: 0.6rem;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+    body.dark-theme .tm-head { color: #94a3b8; }
+    .tm-indicator {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+    .tm-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem 0.35rem;
+    }
+    .tm-skill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding: 0.25rem 0.55rem;
+        background: rgba(255,255,255,0.65);
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 14px;
+        font-size: 0.7rem;
+        font-weight: 500;
+        color: #1e293b;
+        white-space: nowrap;
+    }
+    body.dark-theme .tm-skill {
+        background: rgba(30,30,46,0.5);
+        border-color: rgba(255,255,255,0.06);
+        color: #e2e8f0;
+    }
+    .tm-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+    .tm-skill:hover {
+        border-color: rgba(79,172,254,0.25);
+        background: rgba(79,172,254,0.06);
     }
     .techstack-legend {
-        gap: 0.6rem;
-        padding: 0.6rem 0.8rem;
-        border-radius: 30px;
-    }
-    .legend-item {
-        font-size: 0.72rem;
-        padding: 0.2rem 0.4rem;
-    }
-    .legend-dot {
-        width: 8px;
-        height: 8px;
+        display: none;
     }
 }
 
 @media (max-width: 480px) {
-    #tech-graph {
-        height: min(300px, 50vh);
-        border-radius: 12px;
+    .techstack-mobile {
+        gap: 0.6rem;
     }
-    .techstack-wrapper {
-        padding: 0.75rem 0.5rem;
+    .tm-card {
+        padding: 0.7rem 0.65rem;
         border-radius: 14px;
     }
-    .legend-item {
+    .tm-head {
         font-size: 0.65rem;
-        padding: 0.15rem 0.3rem;
+        margin-bottom: 0.5rem;
     }
-    .techstack-legend {
-        gap: 0.4rem;
-        padding: 0.5rem 0.6rem;
+    .tm-skill {
+        font-size: 0.64rem;
+        padding: 0.22rem 0.45rem;
+        border-radius: 12px;
+    }
+    .tm-dot {
+        width: 4px;
+        height: 4px;
     }
 }
 
 @media (max-width: 360px) {
-    #tech-graph {
-        height: min(260px, 45vh);
-        border-radius: 10px;
+    .techstack-mobile {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
     }
-    .techstack-wrapper {
-        padding: 0.5rem 0.4rem;
-        border-radius: 12px;
+    .tm-card {
+        padding: 0.6rem 0.55rem;
     }
-    .techstack-legend {
-        gap: 0.3rem;
-        padding: 0.4rem 0.4rem;
-    }
-    .legend-item {
+    .tm-skill {
         font-size: 0.6rem;
+        padding: 0.2rem 0.4rem;
     }
-    .legend-dot {
-        width: 6px;
-        height: 6px;
-    }
+}
 }
 
 /* Projects Section */
