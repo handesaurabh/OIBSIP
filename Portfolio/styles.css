@@ -4224,8 +4224,7 @@ section {
 .certification-card,
 .about-content,
 .contact-content {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 600px;
+    contain: layout style paint;
 }
 
 #particle-canvas,
