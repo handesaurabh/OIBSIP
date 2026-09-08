@@ -2162,10 +2162,14 @@ function initFooterClock() {
     const el = document.getElementById('footer-clock');
     if (!el) return;
     const timeSpan = el.querySelector('.clock-time');
+    const dateSpan = el.querySelector('.clock-date');
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     function tick() {
         const d = new Date();
         const pad = (n) => String(n).padStart(2, '0');
         timeSpan.textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+        dateSpan.textContent = `${dayNames[d.getDay()]} · ${pad(d.getDate())} ${monthNames[d.getMonth()]} ${d.getFullYear()}`;
     }
     tick();
     setInterval(tick, 1000);
@@ -2415,3 +2419,258 @@ document.addEventListener('DOMContentLoaded', initFooterClock);
 document.addEventListener('DOMContentLoaded', initFormInteractions);
 document.addEventListener('DOMContentLoaded', initTabTitleAnimation);
 document.addEventListener('DOMContentLoaded', initFaviconAnimation);
+
+/* =============================================
+   PROJECT DETAILS MODAL
+   ============================================= */
+
+const projectDetails = {
+    'doctor-appointment': {
+        title: 'Doctor Appointment Booking',
+        tagline: 'Full-stack MERN application for seamless healthcare booking',
+        icon: 'fa-user-doctor',
+        description: 'A comprehensive doctor appointment booking platform built with the MERN stack. Users can search for doctors by specialty, view real-time availability, book slots, manage appointments, and make secure payments through Razorpay integration. The platform includes both patient and doctor dashboards with role-based access control.',
+        features: [
+            'User authentication with JWT & role-based access',
+            'Real-time doctor availability & slot booking',
+            'Patient & doctor dashboards',
+            'Appointment scheduling & cancellation',
+            'Razorpay payment integration',
+            'Responsive design across all devices',
+            'Admin panel for managing doctors & users',
+            'Notification system for appointment updates'
+        ],
+        techStack: ['React', 'Node.js', 'MongoDB', 'Express', 'Razorpay', 'JWT', 'REST API'],
+        challenges: 'Implementing real-time slot availability required careful handling of concurrent bookings to prevent double-booking. Managing JWT-based authentication with multiple user roles (patient, doctor, admin) and ensuring secure API endpoints across the application was a significant challenge that improved my understanding of backend security patterns.',
+        liveUrl: 'https://frontend-79gu.onrender.com/',
+        githubUrl: 'https://github.com/handesaurabh/DocOnTime'
+    },
+    'shopverse': {
+        title: 'ShopVerse — Fashion E-Commerce',
+        tagline: 'Fashion-focused e-commerce with curated collections',
+        icon: 'fa-shirt',
+        description: 'A fashion-first e-commerce platform where users can explore curated clothing collections, filter by categories and sizes, manage their shopping cart, and complete purchases through a smooth checkout flow. Built with a clean UI that emphasizes product presentation and a seamless shopping experience.',
+        features: [
+            'Browse curated fashion collections',
+            'Size selection & variant management',
+            'Dynamic cart with quantity controls',
+            'Multi-step checkout process',
+            'Razorpay payment gateway integration',
+            'User profile with order history',
+            'Search & filter by category',
+            'Fully responsive product pages'
+        ],
+        techStack: ['React', 'Node.js', 'MongoDB', 'Express', 'Razorpay', 'REST API'],
+        challenges: 'Building a smooth cart management system that handles size variants, updates stock in real-time, and persists state across sessions required thoughtful state management. Integrating Razorpay with proper error handling and transaction rollback was another critical challenge I solved through careful API design.',
+        liveUrl: 'https://shop-verse-j1qw.onrender.com/',
+        githubUrl: 'https://github.com/handesaurabh/ECOMApp'
+    },
+    'shopeasy': {
+        title: 'ShopEasy — Multi-Category Marketplace',
+        tagline: 'Multi-category marketplace for diverse product shopping',
+        icon: 'fa-store',
+        description: 'A multi-category shopping platform that supports a wide range of product types. Users can browse different item categories, compare options, manage their carts, and place orders with multiple payment methods. Designed to scale across diverse product listings with a clean, intuitive interface.',
+        features: [
+            'Multi-category product browsing',
+            'Advanced search & filtering',
+            'Product comparison functionality',
+            'Cart management with persistence',
+            'Multiple payment method support',
+            'Order tracking & history',
+            'Responsive marketplace UI',
+            'RESTful API architecture'
+        ],
+        techStack: ['React', 'Node.js', 'MongoDB', 'Express', 'Razorpay', 'REST API'],
+        challenges: 'Designing a flexible product schema that accommodates diverse categories with different attributes (electronics specs vs clothing sizes) was the main architectural challenge. I solved this using a dynamic attribute system in MongoDB that allows each category to have its own metadata fields.',
+        liveUrl: 'https://shopeasyfrontend-nz4f.onrender.com/',
+        githubUrl: 'https://github.com/handesaurabh/ShopEasy'
+    },
+    'food-delivery': {
+        title: 'Food Delivery',
+        tagline: 'Full-featured food ordering and delivery platform',
+        icon: 'fa-utensils',
+        description: 'A comprehensive food delivery platform with restaurant management, real-time order tracking, payment integration, and delivery optimization. Users can browse restaurants, view menus, customize orders, and track delivery status in real-time. The highest-starred project in the portfolio.',
+        features: [
+            'Restaurant browsing & menu viewing',
+            'Customizable food orders with add-ons',
+            'Real-time order status tracking',
+            'Razorpay payment integration',
+            'Restaurant owner dashboard',
+            'Delivery address management',
+            'Order history & reordering',
+            'Mobile-responsive interface'
+        ],
+        techStack: ['React', 'Node.js', 'MongoDB', 'Express', 'Razorpay', 'REST API'],
+        challenges: 'The most complex project to build, especially around implementing real-time order status updates and managing the lifecycle of an order across multiple user roles (customer, restaurant, delivery). The data flow between these entities required a well-structured state management approach and robust API design.',
+        liveUrl: 'https://quickbitexpress.onrender.com/',
+        githubUrl: 'https://github.com/handesaurabh/FoodDelivery'
+    },
+    'todo-app': {
+        title: 'To-Do App',
+        tagline: 'Modern task management with drag-and-drop',
+        icon: 'fa-tasks',
+        description: 'A modern, visually polished task management application built with vanilla JavaScript. Features drag-and-drop functionality, task categorization, and a clean interface for personal and team productivity. Demonstrates core JavaScript DOM manipulation and event handling skills.',
+        features: [
+            'Drag-and-drop task reordering',
+            'Task categorization & labeling',
+            'Add, edit, and delete tasks',
+            'Completion status tracking',
+            'Persistent local storage',
+            'Clean, minimal UI design',
+            'Mobile-responsive layout',
+            'Keyboard accessibility'
+        ],
+        techStack: ['JavaScript', 'HTML5', 'CSS3'],
+        challenges: 'Implementing smooth drag-and-drop without any library was a great learning experience. I used the native HTML5 Drag and Drop API combined with custom event handling to create fluid interactions. Managing task state persistence with localStorage while keeping the UI in sync was another key challenge.',
+        liveUrl: 'https://todo-main-xi.vercel.app/',
+        githubUrl: 'https://github.com/handesaurabh/TODOMain'
+    },
+    'tic-tac-toe': {
+        title: 'Tic-Tac-Toe',
+        tagline: 'Classic game with AI opponent and multiplayer',
+        icon: 'fa-gamepad',
+        description: 'An interactive Tic-Tac-Toe game featuring an AI opponent, multiplayer support, game history tracking, and a polished responsive design. Built with vanilla JavaScript, it showcases game logic implementation, minimax algorithm, and clean UI/UX design.',
+        features: [
+            'AI opponent with minimax algorithm',
+            'Two-player local multiplayer',
+            'Game history & move tracking',
+            'Win/draw detection with animation',
+            'Score tracking across rounds',
+            'Responsive design for all devices',
+            'Smooth CSS transitions',
+            'Clean, modern UI'
+        ],
+        techStack: ['JavaScript', 'HTML5', 'CSS3'],
+        challenges: 'Implementing an unbeatable AI using the minimax algorithm was the highlight of this project. Balancing difficulty levels and ensuring the AI responds quickly on all devices required optimizing the algorithm. Adding game state management for tracking history and scores across multiple rounds added meaningful complexity.',
+        liveUrl: 'https://tic-tac-toe-tau-five-84.vercel.app/',
+        githubUrl: 'https://github.com/handesaurabh/TicTacToe'
+    },
+    'landing-page': {
+        title: 'Landing Page',
+        tagline: 'Polished startup landing page with modern design',
+        icon: 'fa-window-maximize',
+        description: 'A modern, responsive landing page built with HTML, CSS, and JavaScript. Designed as a polished, professional template suitable for startups and small businesses. Features smooth scroll animations, a clean layout, and attention to typography and spacing.',
+        features: [
+            'Hero section with CTA',
+            'Feature highlights section',
+            'Smooth scroll animations',
+            'Mobile-first responsive design',
+            'Clean typography & spacing',
+            'Cross-browser compatible',
+            'Lightweight with no dependencies',
+            'Accessible markup'
+        ],
+        techStack: ['HTML5', 'CSS3', 'JavaScript'],
+        challenges: 'Creating smooth, performant CSS animations without any library while maintaining cross-browser compatibility was the key focus. I learned how to use CSS transforms and transitions effectively, and how to implement intersection observer for scroll-triggered animations with minimal JavaScript.',
+        liveUrl: 'https://oibsip-smoky.vercel.app/',
+        githubUrl: 'https://github.com/handesaurabh/OIBSIP/tree/main/LandingPage'
+    },
+    'temp-converter': {
+        title: 'Temperature Converter',
+        tagline: 'Real-time unit conversion with input validation',
+        icon: 'fa-thermometer-half',
+        description: 'A responsive web application that converts between Celsius, Fahrenheit, and Kelvin with real-time conversion and input validation. A clean, focused utility built with vanilla technologies as part of the OIBSIP internship program.',
+        features: [
+            'Real-time temperature conversion',
+            'Supports Celsius, Fahrenheit, Kelvin',
+            'Input validation & error handling',
+            'Responsive on all screen sizes',
+            'Clean, focused UI',
+            'Instant result display',
+            'Accessible form controls',
+            'Lightweight implementation'
+        ],
+        techStack: ['HTML5', 'CSS3', 'JavaScript'],
+        challenges: 'Although a simpler project, ensuring accurate conversions across all three units with proper input validation was important. I focused on creating a polished UI with real-time feedback and learned how to build a focused, single-purpose utility application with clean code.',
+        liveUrl: 'https://temp-converter-navy.vercel.app/',
+        githubUrl: 'https://github.com/handesaurabh/OIBSIP/tree/main/TempConverter'
+    }
+};
+
+function initProjectModal() {
+    const modal = document.getElementById('projectModal');
+    const closeBtn = document.getElementById('projectModalClose');
+    const moreBtns = document.querySelectorAll('.project-more-btn');
+
+    moreBtns.forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var projectId = this.getAttribute('data-project');
+            openProjectModal(projectId);
+        });
+    });
+
+    closeBtn.addEventListener('click', closeProjectModal);
+
+    modal.querySelector('.project-modal-backdrop').addEventListener('click', closeProjectModal);
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeProjectModal();
+        }
+    });
+}
+
+function openProjectModal(projectId) {
+    var data = projectDetails[projectId];
+    if (!data) return;
+
+    var modal = document.getElementById('projectModal');
+    var titleEl = document.getElementById('projectModalTitle');
+    var taglineEl = document.getElementById('projectModalTagline');
+    var bodyEl = document.getElementById('projectModalBody');
+    var footerEl = document.getElementById('projectModalFooter');
+    var modalIcon = modal.querySelector('.project-modal-icon i');
+
+    titleEl.textContent = data.title;
+    taglineEl.textContent = data.tagline;
+    modalIcon.className = 'fas ' + data.icon;
+
+    var featuresHtml = data.features.map(function (f) {
+        return '<li>' + f + '</li>';
+    }).join('');
+
+    var techHtml = data.techStack.map(function (t) {
+        return '<span class="project-modal-tech-pill">' + t + '</span>';
+    }).join('');
+
+    bodyEl.innerHTML =
+        '<div class="project-modal-section">' +
+            '<div class="project-modal-section-label"><i class="fas fa-align-left"></i> Overview</div>' +
+            '<p class="project-modal-desc">' + data.description + '</p>' +
+        '</div>' +
+        '<div class="project-modal-section">' +
+            '<div class="project-modal-section-label"><i class="fas fa-check-circle"></i> Key Features</div>' +
+            '<ul class="project-modal-features">' + featuresHtml + '</ul>' +
+        '</div>' +
+        '<div class="project-modal-section">' +
+            '<div class="project-modal-section-label"><i class="fas fa-code"></i> Tech Stack</div>' +
+            '<div class="project-modal-tech-list">' + techHtml + '</div>' +
+        '</div>' +
+        '<div class="project-modal-section">' +
+            '<div class="project-modal-section-label"><i class="fas fa-lightbulb"></i> Challenges & Learnings</div>' +
+            '<p class="project-modal-challenge">' + data.challenges + '</p>' +
+        '</div>';
+
+    footerEl.innerHTML =
+        '<a href="' + data.liveUrl + '" class="project-modal-link project-modal-link--live" target="_blank">' +
+            '<i class="fas fa-external-link-alt"></i> Live Demo' +
+        '</a>' +
+        '<a href="' + data.githubUrl + '" class="project-modal-link project-modal-link--github" target="_blank">' +
+            '<i class="fab fa-github"></i> Source Code' +
+        '</a>';
+
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProjectModal() {
+    var modal = document.getElementById('projectModal');
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('DOMContentLoaded', initProjectModal);
