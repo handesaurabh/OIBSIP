@@ -18,7 +18,7 @@ body {
         radial-gradient(ellipse at 100% 100%, rgba(168, 85, 247, 0.04) 0%, transparent 50%),
         #ffffff;
     overflow-x: hidden;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Dark Theme Styles */
@@ -49,7 +49,7 @@ body.dark-theme {
     backdrop-filter: blur(20px) saturate(1.8);
     -webkit-backdrop-filter: blur(20px) saturate(1.8);
     z-index: 1000;
-    transition: all 0.4s ease;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border-bottom: 1px solid rgba(79, 172, 254, 0.15);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
@@ -101,7 +101,7 @@ body.dark-theme .navbar.scrolled {
     align-items: center;
     gap: 12px;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     color: inherit;
     min-width: 0;
     z-index: 1001;
@@ -284,7 +284,7 @@ body.dark-theme .navbar.scrolled {
     text-decoration: none;
     color: #333333;
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     font-family: 'Inter', sans-serif;
     padding: 6px 10px;
@@ -300,7 +300,7 @@ body.dark-theme .navbar.scrolled {
 .nav-icon {
     color: #4facfe;
     font-size: 0.82rem;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 @media (min-width: 992px) {
@@ -310,7 +310,7 @@ body.dark-theme .navbar.scrolled {
 }
 
 .nav-text {
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .nav-link:hover {
@@ -393,7 +393,7 @@ body.dark-theme .nav-link:hover .nav-icon {
     border-radius: 8px;
     background: rgba(79, 172, 254, 0.06);
     border: 1px solid rgba(79, 172, 254, 0.15);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .nav-toggle:hover {
@@ -405,7 +405,7 @@ body.dark-theme .nav-link:hover .nav-icon {
     height: 2.5px;
     background: #4facfe;
     margin: 2.5px 0;
-    transition: 0.4s;
+    transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border-radius: 2px;
 }
 
@@ -522,7 +522,7 @@ body.dark-theme .hero-description {
     text-decoration: none;
     border-radius: 50px;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: none;
     cursor: pointer;
     font-size: 1rem;
@@ -590,7 +590,7 @@ body.dark-theme .hero-description {
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .hero-profile-img:hover {
@@ -684,7 +684,7 @@ body.dark-theme .about-grid-bg {
     font-family: 'Courier New', monospace;
     padding-left: 1.25rem;
     border-left: 2px solid rgba(79, 172, 254, 0.2);
-    transition: border-color 0.3s ease;
+    transition: border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .about-description:hover {
@@ -850,7 +850,7 @@ body.dark-theme .sysinfo-active {
     padding: 1.6rem;
     border-radius: 20px;
     box-shadow: 0 4px 20px rgba(79, 172, 254, 0.08), 0 10px 30px rgba(0, 0, 0, 0.06);
-    transition: all 0.3s ease;
+    transition: all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: 1px solid rgba(79, 172, 254, 0.15);
     color: #1a1a2e;
     position: relative;
@@ -990,7 +990,7 @@ body.dark-theme .category-title {
     font-weight: 600;
     font-size: 0.92rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     font-family: inherit;
     white-space: nowrap;
     position: relative;
@@ -1007,7 +1007,7 @@ body.dark-theme .category-title {
 
 .skills-toggle i {
     font-size: 0.85rem;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .skill-category.is-expanded .skills-toggle i {
@@ -1024,7 +1024,7 @@ body.dark-theme .category-title {
     grid-auto-rows: 1fr;
     gap: 0.85rem;
     overflow: hidden;
-    transition: max-height 0.35s ease;
+    transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     z-index: 1;
 }
@@ -1050,7 +1050,7 @@ body.dark-theme .category-title {
     height: 100%;
     background: rgba(255, 255, 255, 0.6);
     border-radius: 14px;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: 1px solid rgba(79, 172, 254, 0.1);
     position: relative;
     overflow: hidden;
@@ -1072,7 +1072,7 @@ body.dark-theme .skill-item {
     background: linear-gradient(90deg, #4facfe, #00f2fe);
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.3s ease;
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .skill-item:hover {
@@ -1184,7 +1184,7 @@ body.dark-theme .techstack-wrapper {
     border: 1px solid rgba(79, 172, 254, 0.1);
     cursor: default;
     box-shadow: inset 0 2px 12px rgba(79, 172, 254, 0.04);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 #tech-graph:hover {
@@ -1230,7 +1230,7 @@ body.dark-theme .techstack-legend {
     letter-spacing: 0.02em;
     padding: 0.3rem 0.6rem;
     border-radius: 6px;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .legend-item:hover {
@@ -1252,7 +1252,7 @@ body.dark-theme .legend-item:hover {
     height: 10px;
     border-radius: 50%;
     display: inline-block;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .legend-item:hover .legend-dot {
@@ -1435,7 +1435,7 @@ body.dark-theme .projects::before {
     border-radius: 16px;
     overflow: visible;
     box-shadow: 0 4px 20px rgba(79, 172, 254, 0.06), 0 8px 32px rgba(0, 0, 0, 0.05);
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: 1px solid rgba(79, 172, 254, 0.12);
     color: #1a1a2e;
     isolation: isolate;
@@ -1458,7 +1458,7 @@ body.dark-theme .projects::before {
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     opacity: 0;
     z-index: 2;
 }
@@ -1578,7 +1578,7 @@ body:not(.dark-theme) .project-placeholder i {
     height: 100%;
     z-index: 2;
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     pointer-events: none;
 }
 
@@ -1598,7 +1598,7 @@ body:not(.dark-theme) .project-placeholder i {
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 0.35s ease;
+    transition: opacity 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     z-index: 3;
     border-radius: 16px 16px 0 0;
 }
@@ -1622,21 +1622,13 @@ body:not(.dark-theme) .project-placeholder i {
     justify-content: center;
     border-radius: 50%;
     text-decoration: none;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     font-weight: bold;
     position: relative;
     box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
-}
-
-.project-link::before {
-    content: '';
-    position: absolute;
-    inset: -3px;
-    border-radius: 50%;
-    background: conic-gradient(from 0deg, #4facfe, #00f2fe, #a855f7, #4facfe);
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
 }
 
 .project-link:hover {
@@ -1644,9 +1636,9 @@ body:not(.dark-theme) .project-placeholder i {
     box-shadow: 0 8px 25px rgba(79, 172, 254, 0.5);
 }
 
-.project-link:hover::before {
-    opacity: 1;
-    animation: borderRotate 2s linear infinite;
+.project-link i {
+    transition: color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation: multicolor 3s ease-in-out infinite;
 }
 
 .project-content {
@@ -1693,7 +1685,7 @@ body.dark-theme .project-description {
     font-size: 0.75rem;
     font-weight: 600;
     font-family: 'Courier New', monospace;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     letter-spacing: 0.02em;
 }
@@ -1814,7 +1806,7 @@ body.dark-theme .contact-desc {
     border-radius: 8px;
     background: rgba(79, 172, 254, 0.04);
     border: 1px solid rgba(79, 172, 254, 0.06);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .contact-item:hover {
@@ -1853,7 +1845,7 @@ body.dark-theme .item-value {
     color: #4facfe;
     cursor: pointer;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     font-size: 1rem;
     flex-shrink: 0;
 }
@@ -1884,7 +1876,7 @@ body.dark-theme .item-value {
     border: 1px solid rgba(79, 172, 254, 0.15);
     color: #4facfe;
     text-decoration: none;
-    transition: all 0.35s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     font-size: 1.1rem;
     position: relative;
     overflow: hidden;
@@ -1897,13 +1889,13 @@ body.dark-theme .item-value {
     border-radius: 12px;
     background: linear-gradient(135deg, #4facfe, #00f2fe);
     opacity: 0;
-    transition: opacity 0.35s ease;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .social-link i {
     position: relative;
     z-index: 1;
-    transition: color 0.35s ease;
+    transition: color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .social-link:hover {
@@ -1965,7 +1957,7 @@ body.dark-theme .contact-form {
     width: 0%;
     border-radius: 3px;
     background: linear-gradient(90deg, #4facfe, #00f2fe);
-    transition: width 0.5s ease;
+    transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Form header */
@@ -1985,7 +1977,7 @@ body.dark-theme .contact-form {
     font-size: 0.7rem;
     color: #4facfe;
     font-weight: 600;
-    transition: color 0.3s ease;
+    transition: color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 body.dark-theme .form-header {
@@ -2016,7 +2008,7 @@ body.dark-theme .form-progress-text {
     border-radius: 0;
     color: #1a1a2e;
     outline: none;
-    transition: color 0.3s ease;
+    transition: color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     resize: vertical;
     min-height: 42px;
 }
@@ -2040,7 +2032,7 @@ body.dark-theme .form-field textarea {
     font-size: 0.9rem;
     color: #94a3b8;
     pointer-events: none;
-    transition: all 0.25s ease;
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .form-field input:focus ~ .form-label,
@@ -2073,7 +2065,7 @@ body.dark-theme .form-field textarea:not(:placeholder-shown) ~ .form-label {
     right: 0;
     height: 2px;
     background: rgba(79, 172, 254, 0.15);
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .form-field textarea ~ .form-border {
@@ -2097,7 +2089,7 @@ body.dark-theme .form-field textarea:not(:placeholder-shown) ~ .form-label {
     font-size: 0.68rem;
     color: #64748b;
     opacity: 0.5;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .form-group:focus-within .form-char-count {
@@ -2109,7 +2101,7 @@ body.dark-theme .form-field textarea:not(:placeholder-shown) ~ .form-label {
     font-weight: 600;
     min-width: 2ch;
     text-align: right;
-    transition: color 0.3s ease;
+    transition: color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .char-count-current.warning {
@@ -2174,7 +2166,7 @@ body.dark-theme .char-count-current.danger {
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: all 0.4s ease;
+    transition: all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     letter-spacing: 0.02em;
 }
 
@@ -2191,7 +2183,7 @@ body.dark-theme .char-count-current.danger {
 
 .btn-icon {
     font-size: 0.85rem;
-    transition: transform 0.4s ease;
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .contact-submit:hover .btn-icon {
@@ -2213,7 +2205,7 @@ body.dark-theme .contact-submit {
     font-size: 0.68rem;
     color: #64748b;
     opacity: 0.5;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .form-footer.active {
@@ -2387,11 +2379,12 @@ body.dark-theme .footer {
 
 /* Multicolor glow for SVG icons */
 @keyframes multicolor {
-    0%   { color: #8B1A4A; stroke: #8B1A4A; transform: scale(1); }
-    25%  { color: #D4A030; stroke: #D4A030; transform: scale(1.08); }
-    50%  { color: #7B2D8E; stroke: #7B2D8E; transform: scale(1); }
-    75%  { color: #1E8C7C; stroke: #1E8C7C; transform: scale(1.08); }
-    100% { color: #8B1A4A; stroke: #8B1A4A; transform: scale(1); }
+    0%   { color: #ff4d6d; transform: scale(1); }
+    20%  { color: #ff9f1c; transform: scale(1.15); }
+    40%  { color: #ffd60a; transform: scale(1); }
+    60%  { color: #7cfc00; transform: scale(1.15); }
+    80%  { color: #00e5ff; transform: scale(1); }
+    100% { color: #ff4d6d; transform: scale(1); }
 }
 
 /* ── Row 1: Brand ── */
@@ -2453,7 +2446,7 @@ body.dark-theme .footer-copy-text {
     font-family: 'Courier New', monospace;
     font-size: 0.88rem;
     letter-spacing: 0.06em;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .footer-clock:hover {
@@ -2621,7 +2614,7 @@ body.dark-theme .stack-items {
     background: rgba(79, 172, 254, 0.06);
     border: 1px solid rgba(79, 172, 254, 0.1);
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     font-size: 0.95rem;
 }
 
@@ -3118,7 +3111,7 @@ section {
 .animate-on-scroll {
     opacity: 0;
     transform: translateY(30px);
-    transition: all 0.6s ease;
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .animate-on-scroll.animated {
@@ -3316,7 +3309,7 @@ section {
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(79, 172, 254, 0.06), 0 10px 30px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+    transition: all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: 1px solid rgba(79, 172, 254, 0.12);
     color: #1a1a2e;
     padding: 2rem;
@@ -3388,7 +3381,7 @@ body.dark-theme .certification-title {
     text-decoration: none;
     border-radius: 50px;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: none;
     cursor: pointer;
     font-size: 1rem;
@@ -3464,7 +3457,7 @@ body.dark-theme .hero::after {
 
 /* Tilt Card Effect */
 .tilt-card {
-    transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     transform-style: preserve-3d;
     perspective: 1000px;
     --tilt-x: 0deg;
@@ -3493,7 +3486,7 @@ body.dark-theme .hero::after {
 
 /* Magnetic Button */
 .btn {
-    transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Scramble Text Effect */
@@ -3513,7 +3506,7 @@ body.dark-theme .hero::after {
     background: radial-gradient(ellipse, rgba(79, 172, 254, 0.06) 0%, transparent 70%);
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .section-title.animated::before {
@@ -3522,7 +3515,7 @@ body.dark-theme .hero::after {
 
 /* Floating particles for skills */
 .skill-category {
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .skill-category:hover .category-signal span {
@@ -3559,7 +3552,7 @@ body.dark-theme .hero::after {
     overflow: hidden;
     opacity: 0;
     transform: translateY(20px) scale(0.95);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .notification.visible {
@@ -3584,7 +3577,7 @@ body.dark-theme .notification {
     background: conic-gradient(from 0deg, transparent, #4facfe, #00f2fe, #a855f7, transparent);
     opacity: 0;
     z-index: -1;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     animation: notifSpin 4s linear infinite;
 }
 
@@ -3690,7 +3683,7 @@ body.dark-theme .notification-info .notif-body i { color: #60a5fa; }
     inset: 0;
     background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
     transform: translateY(100%);
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .social-link:hover::before {
@@ -3706,7 +3699,7 @@ body.dark-theme .notification-info .notif-body i { color: #60a5fa; }
 
 /* Scroll reveal animation enhancement */
 .animate-on-scroll {
-    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Project overlay cyber border */
@@ -3721,7 +3714,7 @@ body.dark-theme .notification-info .notif-body i { color: #60a5fa; }
 
 /* Tech tag hover */
 .tech-tag {
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .tech-tag:hover {
@@ -3738,7 +3731,7 @@ body.dark-theme .notification-info .notif-body i { color: #60a5fa; }
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(79, 172, 254, 0.08), transparent);
-    transition: left 0.5s ease;
+    transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     pointer-events: none;
 }
 
@@ -3748,7 +3741,7 @@ body.dark-theme .notification-info .notif-body i { color: #60a5fa; }
 
 /* Certification icon glow */
 .certification-icon {
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .certification-card:hover .certification-icon {
@@ -3836,7 +3829,7 @@ body.dark-theme .resume-modal-header h3 {
     align-items: center;
     justify-content: center;
     font-size: 1.1rem;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .resume-modal-close:hover {
@@ -3952,7 +3945,7 @@ body.dark-theme .project-modal-content {
     align-items: center;
     justify-content: center;
     font-size: 1.1rem;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     z-index: 5;
 }
 
@@ -4163,7 +4156,7 @@ body.dark-theme .project-modal-challenge {
     font-size: 0.85rem;
     font-weight: 600;
     font-family: 'Courier New', monospace;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .project-modal-link--live {
@@ -4308,7 +4301,7 @@ body.dark-theme .project-modal-link--github {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     font-family: 'Courier New', monospace;
     font-size: 0.82rem;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .about-terminal:hover {
@@ -4347,7 +4340,7 @@ body.dark-theme .terminal-bar {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .tdot-red { background: #ff5f57; }
@@ -4446,7 +4439,7 @@ body.dark-theme .term-str {
     border-radius: 2px;
     overflow: hidden;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .skill-item:hover .skill-progress {
@@ -4514,7 +4507,7 @@ body.dark-theme .term-str {
     border-radius: 8px;
     box-shadow: 0 0 6px rgba(79, 172, 254, 0.3), inset 0 0 3px rgba(255, 255, 255, 0.15);
     animation: scrollbarPulse 3s ease-in-out infinite;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 ::-webkit-scrollbar-thumb:hover {
