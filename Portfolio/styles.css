@@ -3345,6 +3345,67 @@ body.dark-theme .certification-card {
     text-shadow: 0 0 10px rgba(79, 172, 254, 0.5);
 }
 
+/* Certification Logos
+   Every source logo has been re-fitted so its artwork fills its own frame
+   (viewBox cropped to the ink, raster trimmed to the ink). That makes
+   max-height a true optical size cap instead of a cap on empty padding. */
+.certification-logos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    width: 100%;
+    max-width: min(230px, 100%);
+    margin: 0 auto 1.25rem;
+    min-height: 76px;
+    padding: 0.85rem 1.1rem;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #ffffff 0%, #f1f7ff 100%);
+    border: 1px solid rgba(79, 172, 254, 0.28);
+    box-shadow: 0 4px 15px rgba(79, 172, 254, 0.14);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body.dark-theme .certification-logos {
+    background: linear-gradient(135deg, #f7faff 0%, #e4eeff 100%);
+    border-color: rgba(79, 172, 254, 0.4);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+.certification-logo {
+    display: block;
+    flex: 0 1 auto;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: clamp(30px, 7.4vw, 44px);
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+/* Full lockups (mark + wordmark + tagline) spend only ~39% of their height on
+   the wordmark, so they need a taller box than a bare mark to reach the same
+   optical size. The cap keeps the lockup under the chip's inner width. */
+.certification-logo--wordmark {
+    max-height: clamp(30px, 6.4vw, 44px);
+}
+
+.certification-logo-sep {
+    align-self: center;
+    color: #a0a0c0;
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1;
+}
+
+.certification-card:hover .certification-logos {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 10px 28px rgba(79, 172, 254, 0.3);
+    border-color: rgba(79, 172, 254, 0.6);
+}
+
 .certification-title {
     font-size: 1.3rem;
     font-weight: 600;
@@ -3747,6 +3808,22 @@ body.dark-theme .notification-info .notif-body i { color: #60a5fa; }
 .certification-card:hover .certification-icon {
     transform: scale(1.2) rotateY(360deg);
     text-shadow: 0 0 20px rgba(79, 172, 254, 0.8);
+}
+
+/* Duo logo container needs a little more room */
+.certification-logos-duo {
+    max-width: min(250px, 100%);
+}
+
+@media (max-width: 480px) {
+    .certification-logos {
+        max-width: 200px;
+        padding: 0.75rem 0.9rem;
+    }
+
+    .certification-logos-duo {
+        max-width: 230px;
+    }
 }
 
 /* Resume Preview Modal */
